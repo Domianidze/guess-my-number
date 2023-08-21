@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from "react";
-import { ImageBackground, SafeAreaView, Text, StyleSheet } from "react-native";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
-import Colors from "../../../constants/colors";
+import Colors from "@/constants/colors";
 
 const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -12,7 +12,7 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
         style={styles.container}
       >
         <ImageBackground
-          source={require("../../../assets/images/grunge.png")}
+          source={require("@/assets/images/grunge.png")}
           resizeMode="cover"
           style={styles.container}
           imageStyle={styles.background}
