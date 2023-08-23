@@ -10,7 +10,13 @@ const UIButton: React.FC<PropsWithChildren<TProps>> = ({
   pressHandler,
 }) => {
   return (
-    <Pressable style={styles.container} onPress={pressHandler}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.container,
+        pressed && styles.containerPressed,
+      ]}
+      onPress={pressHandler}
+    >
       <Text>{children}</Text>
     </Pressable>
   );
@@ -27,5 +33,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 32,
+  },
+  containerPressed: {
+    opacity: 0.8,
   },
 });
