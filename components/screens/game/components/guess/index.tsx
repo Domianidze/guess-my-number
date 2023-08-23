@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { UIText } from "@/components/ui";
 
 type TProps = {
   index: number;
@@ -8,8 +9,8 @@ type TProps = {
 const Guess: React.FC<PropsWithChildren<TProps>> = ({ children, index }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Guess #{index}</Text>
-      <Text style={styles.text}>{children}</Text>
+      <UIText style={styles.text}>Guess #{index}</UIText>
+      <UIText style={styles.text}>{children}</UIText>
     </View>
   );
 };

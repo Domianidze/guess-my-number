@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { View, Text, Alert, StyleSheet } from "react-native";
-import { UICard, UIButton } from "@/components/ui";
+import { View, Alert, StyleSheet } from "react-native";
+import { UICard, UIButton, UIText } from "@/components/ui";
 import Guess from "./components/guess";
 
 type TProps = {
@@ -14,8 +14,8 @@ const GameScreen: React.FC<TProps> = ({ userNumber, setUserNumber }) => {
   return (
     <View style={styles.container}>
       <UICard>
-        <Text style={styles.label}>Phone's guess:</Text>
-        <Text style={styles.guess}>00</Text>
+        <UIText style={styles.label}>Phone's guess:</UIText>
+        <UIText style={styles.guess}>00</UIText>
         <View style={styles.buttonContainer}>
           <UIButton>+</UIButton>
           <UIButton>-</UIButton>

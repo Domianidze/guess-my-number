@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
+import UIText from "../text";
 
 type TProps = {
   pressHandler?: () => void;
@@ -17,7 +18,7 @@ const UIButton: React.FC<PropsWithChildren<TProps>> = ({
       ]}
       onPress={pressHandler}
     >
-      <Text>{children}</Text>
+      <UIText>{children}</UIText>
     </Pressable>
   );
 };

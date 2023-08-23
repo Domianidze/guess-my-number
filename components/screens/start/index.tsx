@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { View, Text, TextInput, Alert, StyleSheet } from "react-native";
-import { UICard, UIButton } from "@/components/ui";
+import { View, TextInput, Alert, StyleSheet } from "react-native";
+import { UICard, UIButton, UIText } from "@/components/ui";
 
 type TProps = {
   setUserNumber: Dispatch<SetStateAction<number | undefined>>;
@@ -28,7 +28,7 @@ const StartScreen: React.FC<TProps> = ({ setUserNumber }) => {
   return (
     <View style={styles.container}>
       <UICard>
-        <Text style={styles.label}>Your number:</Text>
+        <UIText style={styles.label}>Your number:</UIText>
         <TextInput
           style={styles.input}
           value={value}
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 72,
+    fontFamily: "adlam-display",
     color: "white",
   },
   buttonContainer: {
