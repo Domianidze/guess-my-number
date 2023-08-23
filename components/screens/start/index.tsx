@@ -17,6 +17,7 @@ const StartScreen: React.FC<TProps> = ({ setUserNumber, setGameOver }) => {
   const submitHandler = () => {
     if (+value < 1 || +value > 99) {
       Alert.alert("User number must be between 1 and 99.");
+      return;
     }
 
     setUserNumber(+value);
