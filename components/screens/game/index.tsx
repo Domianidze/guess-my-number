@@ -23,7 +23,9 @@ const GameScreen: React.FC<TProps> = ({ userNumber, setUserNumber }) => {
       </UICard>
       <View style={styles.guessesContainer}>
         {guesses.map((guess, i) => (
-          <Guess index={guesses.length - i}>{guess}</Guess>
+          <Guess index={guesses.length - i} key={guess}>
+            {guess}
+          </Guess>
         ))}
       </View>
     </View>
