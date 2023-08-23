@@ -1,24 +1,45 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { UICard, UIButton } from "@/components/ui";
 
-const StartScreen = () => {
+type TProps = {
+  setUserNumber: Dispatch<SetStateAction<number | undefined>>;
+};
+
+const StartScreen: React.FC<TProps> = ({ setUserNumber }) => {
+  const [value, setValue] = React.useState("");
+
+  const changeHandler = (newValue: string) => {
+    setValue(newValue);
+  };
+
+  const submitHandler = () => {
+    setUserNumber(+value);
+  };
+
+  const clearHandler = () => {
+    setValue("");
+  };
+
   return (
     <View style={styles.container}>
       <UICard>
         <Text style={styles.label}>Your number:</Text>
         <TextInput
           style={styles.input}
+          value={value}
           placeholder="0"
           placeholderTextColor="rgba(255, 255, 255, 0.1)"
           keyboardType="number-pad"
           returnKeyType={"done"}
-          maxLength={2}
           autoFocus={true}
+          maxLength={2}
+          onSubmitEditing={submitHandler}
+          onChangeText={changeHandler}
         />
         <View style={styles.buttonContainer}>
-          <UIButton>Submit</UIButton>
-          <UIButton>Reset</UIButton>
+          <UIButton pressHandler={submitHandler}>Submit</UIButton>
+          <UIButton pressHandler={clearHandler}>Reset</UIButton>
         </View>
       </UICard>
     </View>
