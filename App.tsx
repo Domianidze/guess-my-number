@@ -8,6 +8,7 @@ import EndScreen from "./components/screens/end";
 
 export default function App() {
   const [userNumber, setUserNumber] = React.useState<number>();
+  const [guessesAmount, setGuessesAmount] = React.useState<number>();
   const [gameOver, setGameOver] = React.useState<boolean>(true);
 
   const [fontsLoaded] = useFonts({
@@ -29,14 +30,23 @@ export default function App() {
 
   return (
     <MainLayout>
-      {gameOver && !userNumber ? (
+      {!userNumber && gameOver ? (
         <StartScreen setUserNumber={setUserNumber} setGameOver={setGameOver} />
       ) : null}
-      {!gameOver && userNumber ? (
-        <GameScreen userNumber={userNumber} setGameOver={setGameOver} />
+      {userNumber && !gameOver ? (
+        <GameScreen
+          userNumber={userNumber}
+          setGuessesAmount={setGuessesAmount}
+          setGameOver={setGameOver}
+        />
       ) : null}
-      {gameOver && userNumber ? (
-        <EndScreen setUserNumber={setUserNumber} setGameOver={setGameOver} />
+      {userNumber && guessesAmount && gameOver ? (
+        <EndScreen
+          userNumber={userNumber}
+          guessesAmount={guessesAmount}
+          setGuessesAmount={setGuessesAmount}
+          setUserNumber={setUserNumber}
+        />
       ) : null}
     </MainLayout>
   );

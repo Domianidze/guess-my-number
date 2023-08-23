@@ -6,6 +6,7 @@ import Guess from "./components/guess";
 
 type TProps = {
   userNumber: number;
+  setGuessesAmount: Dispatch<SetStateAction<number | undefined>>;
   setGameOver: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -26,7 +27,11 @@ const generateGuess: (min: number, max: number, exclude?: number) => number = (
   return guess;
 };
 
-const GameScreen: React.FC<TProps> = ({ userNumber, setGameOver }) => {
+const GameScreen: React.FC<TProps> = ({
+  userNumber,
+  setGuessesAmount,
+  setGameOver,
+}) => {
   const [currentGuess, setCurrentGuess] = React.useState(0);
   const [guesses, setGuesses] = React.useState<number[]>([]);
 
@@ -55,6 +60,7 @@ const GameScreen: React.FC<TProps> = ({ userNumber, setGameOver }) => {
     const newGuess = generateGuess(minBoundary, maxBoundary);
 
     if (newGuess === userNumber) {
+      setGuessesAmount(guesses.length);
       setGameOver(true);
       return;
     }

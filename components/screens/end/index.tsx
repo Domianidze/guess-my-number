@@ -3,11 +3,23 @@ import { View, Image, Text, StyleSheet } from "react-native";
 import { UIButton, UIText } from "@/components/ui";
 
 type TProps = {
+  userNumber: number;
+  guessesAmount: number;
   setUserNumber: Dispatch<SetStateAction<number | undefined>>;
-  setGameOver: Dispatch<SetStateAction<boolean>>;
+  setGuessesAmount: Dispatch<SetStateAction<number | undefined>>;
 };
 
-const EndScreen: React.FC<TProps> = ({ setUserNumber, setGameOver }) => {
+const EndScreen: React.FC<TProps> = ({
+  userNumber,
+  guessesAmount,
+  setUserNumber,
+  setGuessesAmount,
+}) => {
+  const restartHandler = () => {
+    setUserNumber(undefined);
+    setGuessesAmount(undefined);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -18,10 +30,11 @@ const EndScreen: React.FC<TProps> = ({ setUserNumber, setGameOver }) => {
         />
       </View>
       <UIText style={styles.text}>
-        Your phone needed <Text style={styles.highlight}>X</Text> rounds to
-        guess the number <Text style={styles.highlight}>Y</Text>
+        Your phone needed <Text style={styles.highlight}>{guessesAmount}</Text>{" "}
+        rounds to guess the number{" "}
+        <Text style={styles.highlight}>{userNumber}</Text>
       </UIText>
-      <UIButton>Restart</UIButton>
+      <UIButton pressHandler={restartHandler}>Restart</UIButton>
     </View>
   );
 };
