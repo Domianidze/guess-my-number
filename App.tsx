@@ -7,6 +7,7 @@ import GameScreen from "@/components/screens/game";
 
 export default function App() {
   const [userNumber, setUserNumber] = React.useState<number>();
+  const [gameOver, setGameOver] = React.useState<boolean>(true);
 
   const [fontsLoaded] = useFonts({
     "adlam-display": require("@/assets/fonts/AdlamDisplay-Regular.ttf"),
@@ -27,9 +28,11 @@ export default function App() {
 
   return (
     <MainLayout>
-      {!userNumber ? <StartScreen setUserNumber={setUserNumber} /> : null}
-      {userNumber ? (
-        <GameScreen userNumber={userNumber} setUserNumber={setUserNumber} />
+      {gameOver && !userNumber ? (
+        <StartScreen setUserNumber={setUserNumber} setGameOver={setGameOver} />
+      ) : null}
+      {!gameOver && userNumber ? (
+        <GameScreen userNumber={userNumber} setGameOver={setGameOver} />
       ) : null}
     </MainLayout>
   );

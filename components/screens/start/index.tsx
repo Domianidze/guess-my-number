@@ -4,9 +4,10 @@ import { UICard, UIButton, UIText } from "@/components/ui";
 
 type TProps = {
   setUserNumber: Dispatch<SetStateAction<number | undefined>>;
+  setGameOver: Dispatch<SetStateAction<boolean>>;
 };
 
-const StartScreen: React.FC<TProps> = ({ setUserNumber }) => {
+const StartScreen: React.FC<TProps> = ({ setUserNumber, setGameOver }) => {
   const [value, setValue] = React.useState("");
 
   const changeHandler = (newValue: string) => {
@@ -19,6 +20,7 @@ const StartScreen: React.FC<TProps> = ({ setUserNumber }) => {
     }
 
     setUserNumber(+value);
+    setGameOver(false);
   };
 
   const clearHandler = () => {
