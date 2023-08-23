@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { View, Alert, StyleSheet } from "react-native";
+import { View, FlatList, Alert, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { UICard, UIButton, UIText } from "@/components/ui";
 import Guess from "./components/guess";
@@ -78,11 +78,14 @@ const GameScreen: React.FC<TProps> = ({ userNumber, setGameOver }) => {
         </View>
       </UICard>
       <View style={styles.guessesContainer}>
-        {guesses.map((guess, i) => (
-          <Guess index={guesses.length - i} key={guess}>
-            {guess}
-          </Guess>
-        ))}
+        <FlatList
+          data={guesses}
+          renderItem={({ item, index }) => (
+            <Guess index={guesses.length - index} key={item}>
+              {item}
+            </Guess>
+          )}
+        />
       </View>
     </View>
   );
