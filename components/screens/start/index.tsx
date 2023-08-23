@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, Alert, StyleSheet } from "react-native";
 import { UICard, UIButton } from "@/components/ui";
 
 type TProps = {
@@ -14,6 +14,10 @@ const StartScreen: React.FC<TProps> = ({ setUserNumber }) => {
   };
 
   const submitHandler = () => {
+    if (+value < 1 || +value > 99) {
+      Alert.alert("User number must be between 1 and 99.");
+    }
+
     setUserNumber(+value);
   };
 
