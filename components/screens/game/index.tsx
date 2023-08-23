@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { View, Alert, StyleSheet } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { UICard, UIButton, UIText } from "@/components/ui";
 import Guess from "./components/guess";
 
@@ -17,8 +18,12 @@ const GameScreen: React.FC<TProps> = ({ userNumber, setUserNumber }) => {
         <UIText style={styles.label}>Phone's guess:</UIText>
         <UIText style={styles.guess}>00</UIText>
         <View style={styles.buttonContainer}>
-          <UIButton>+</UIButton>
-          <UIButton>-</UIButton>
+          <UIButton>
+            <Ionicons name="add-outline" size={16} />
+          </UIButton>
+          <UIButton>
+            <Ionicons name="remove-outline" size={16} />
+          </UIButton>
         </View>
       </UICard>
       <View style={styles.guessesContainer}>
