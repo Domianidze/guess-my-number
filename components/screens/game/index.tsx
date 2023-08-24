@@ -47,7 +47,7 @@ const GameScreen: React.FC<TProps> = ({
       (button === "higher" && currentGuess >= userNumber) ||
       (button === "lower" && currentGuess <= userNumber)
     ) {
-      Alert.alert("Stop lying. You know it's wrong.");
+      Alert.alert("Error", "Stop lying. You know it's wrong.");
       return;
     }
 

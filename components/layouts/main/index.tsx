@@ -1,5 +1,10 @@
 import React, { PropsWithChildren } from "react";
-import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
+import {
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  Platform,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "@/constants/colors";
@@ -31,6 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    ...(Platform.OS === "android" && { paddingHorizontal: 8 }),
   },
   background: {
     opacity: 0.1,
