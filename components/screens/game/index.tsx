@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { View, FlatList, Alert, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import useOrientation from "@/hooks/use-orientation";
 import { UICard, UIButton, UIText } from "@/components/ui";
 import Guess from "./components/guess";
 
@@ -34,6 +35,8 @@ const GameScreen: React.FC<TProps> = ({
 }) => {
   const [currentGuess, setCurrentGuess] = React.useState(0);
   const [guesses, setGuesses] = React.useState<number[]>([]);
+
+  const { isLandscape } = useOrientation();
 
   React.useEffect(() => {
     const initialGuess = generateGuess(minBoundary, maxBoundary, userNumber);
@@ -70,7 +73,12 @@ const GameScreen: React.FC<TProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { flexDirection: isLandscape ? "row" : "column" },
+      ]}
+    >
       <UICard>
         <UIText style={styles.label}>Phone's guess:</UIText>
         <UIText style={styles.guess}>{currentGuess}</UIText>

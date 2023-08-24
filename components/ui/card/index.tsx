@@ -1,8 +1,20 @@
 import React, { PropsWithChildren } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
+import useOrientation from "@/hooks/use-orientation";
 
-const UICard: React.FC<PropsWithChildren> = ({ children }) => {
-  return <View style={styles.container}>{children}</View>;
+type TProps = {
+  style?: ViewStyle;
+};
+
+const UICard: React.FC<PropsWithChildren<TProps>> = ({ children, style }) => {
+  const { isLandscape } = useOrientation();
+  const marginKey = isLandscape ? "marginHorizontal" : "marginVertical";
+
+  return (
+    <View style={[styles.container, { [marginKey]: 16 }, style]}>
+      {children}
+    </View>
+  );
 };
 
 export default UICard;
@@ -10,7 +22,6 @@ export default UICard;
 const styles = StyleSheet.create({
   container: {
     flex: 0.5,
-    marginVertical: 16,
     padding: 16,
     justifyContent: "space-evenly",
     alignItems: "center",

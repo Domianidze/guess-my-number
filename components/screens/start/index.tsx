@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { View, TextInput, Alert, StyleSheet } from "react-native";
+import useOrientation from "@/hooks/use-orientation";
 import { UICard, UIButton, UIText } from "@/components/ui";
 
 type TProps = {
@@ -9,6 +10,8 @@ type TProps = {
 
 const StartScreen: React.FC<TProps> = ({ setUserNumber, setGameOver }) => {
   const [value, setValue] = React.useState("");
+
+  const { isLandscape } = useOrientation();
 
   const changeHandler = (newValue: string) => {
     setValue(newValue);
@@ -30,8 +33,10 @@ const StartScreen: React.FC<TProps> = ({ setUserNumber, setGameOver }) => {
 
   return (
     <View style={styles.container}>
-      <UICard>
-        <UIText style={styles.label}>Your number:</UIText>
+      <UICard style={{ flex: isLandscape ? 0.25 : 0.5 }}>
+        {!isLandscape ? (
+          <UIText style={styles.label}>Your number:</UIText>
+        ) : null}
         <TextInput
           style={styles.input}
           value={value}
@@ -44,10 +49,12 @@ const StartScreen: React.FC<TProps> = ({ setUserNumber, setGameOver }) => {
           onSubmitEditing={submitHandler}
           onChangeText={changeHandler}
         />
-        <View style={styles.buttonContainer}>
-          <UIButton pressHandler={submitHandler}>Submit</UIButton>
-          <UIButton pressHandler={clearHandler}>Reset</UIButton>
-        </View>
+        {!isLandscape ? (
+          <View style={styles.buttonContainer}>
+            <UIButton pressHandler={submitHandler}>Submit</UIButton>
+            <UIButton pressHandler={clearHandler}>Reset</UIButton>
+          </View>
+        ) : null}
       </UICard>
     </View>
   );

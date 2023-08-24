@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
+import useOrientation from "@/hooks/use-orientation";
 import { UIButton, UIText } from "@/components/ui";
 
 type TProps = {
@@ -15,6 +16,8 @@ const EndScreen: React.FC<TProps> = ({
   setUserNumber,
   setGuessesAmount,
 }) => {
+  const { isLandscape } = useOrientation();
+
   const restartHandler = () => {
     setUserNumber(undefined);
     setGuessesAmount(undefined);
@@ -29,12 +32,14 @@ const EndScreen: React.FC<TProps> = ({
           alt="success"
         />
       </View>
-      <UIText style={styles.text}>
-        Your phone needed <Text style={styles.highlight}>{guessesAmount}</Text>{" "}
-        rounds to guess the number{" "}
-        <Text style={styles.highlight}>{userNumber}</Text>
-      </UIText>
-      <UIButton pressHandler={restartHandler}>Restart</UIButton>
+      <View>
+        <UIText style={styles.text}>
+          Your phone needed{" "}
+          <Text style={styles.highlight}>{guessesAmount}</Text> rounds to guess
+          the number <Text style={styles.highlight}>{userNumber}</Text>
+        </UIText>
+        <UIButton pressHandler={restartHandler}>Restart</UIButton>
+      </View>
     </View>
   );
 };

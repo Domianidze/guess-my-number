@@ -28,7 +28,7 @@ export default UIButton;
 const styles = StyleSheet.create({
   container: {
     marginVertical: 4,
-    width: "100%",
+    paddingHorizontal: 16,
     height: 32,
     justifyContent: "center",
     alignItems: "center",
